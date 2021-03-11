@@ -53,11 +53,27 @@ button {
 
 button:hover {
     transition-duration: 0.4s;
-    background-color: gray;
+    transform: scale(0.9);
 }
 
 #quiz {
     text-align: center;
+}
+
+#correct{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 3em;
+    text-align: center;
+    color: slateblue;
+    font-weight: 700;
+}
+
+#wrong{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 3em;
+    text-align: center;
+    color: red;
+    font-weight: 700;
 }
 
 h1 {
