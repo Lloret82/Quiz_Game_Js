@@ -13,7 +13,7 @@
 ## Description
 
 #### Quiz Game
-
+A quiz application using HTML, CSS, and Javascript. This application use Javascript to show quiz questions one by one and collect data to check if the answers is correct or not, this then generates a score and store it in local storage.
 
 ## What technology has been used
 * HTML
@@ -31,7 +31,7 @@
 ## Screenshots
 
  ![Code](./assets/img/code.png)
- ![Live page Picture](./assets/img//live.png)
+ ![Live page Picture](./assets/img/live.png)
 
 
 ## Installation
