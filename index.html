@@ -3,14 +3,14 @@
 <html>
 
 <head>
-	<title>Code Quiz</title>
+	<title>Quiz_Game_Js</title>
 	<meta charset="UTF-8">
 	<link href="./assets/css/style.css" rel="stylesheet" type="text/css">
 
 </head>
 
 <body>
-	<div id="nav">
+	<nav id="nav">
 		<!-- view scores link on the top left of nav bar-->
 		<div class="score">
 			<a onclick="displayScore()" href="#">
@@ -21,9 +21,9 @@
 		<div class="timer">
 			<h4>Time: <span id="timeLeft">0</span></h4>
 		</div>
-	</div>
+	</nav>
 	<!--main body of quiz-->
-	<div id="quiz">
+	<main id="quiz">
 		<div id="Body">
 			<h1>
 				JavaScript Quiz!
@@ -37,7 +37,7 @@
 			</h3>
 			<button onclick="start()">Start!</button>
 		</div>
-	</div>
+	</main>
 	<div id="correct"></div>
 	<div id="wrong"></div>
 	</div>
