@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap');
+
 
 /* nav bar */
 .timer {
@@ -28,7 +28,7 @@ body {
 
 #Body {
     text-align: center;
-    padding: 12vh;
+    padding: 100px;
 }
 
 h4 {
@@ -76,6 +76,26 @@ button:hover {
     font-weight: 700;
 }
 
+@keyframes movingTopToBottom {
+    0% {
+      top: -150px;
+    }
+    95% {
+      top: 0;
+    }
+    100% {
+      top: 0;
+    }
+  }
+  .container {
+    height: 110px;
+    overflow: hidden;
+  }
+  .anim {
+    animation: movingTopToBottom 1s linear infinite;
+    position: relative; 
+    animation-iteration-count: 1;
+  }
 h1 {
 padding: 20px;
 border-bottom: 2px solid black;

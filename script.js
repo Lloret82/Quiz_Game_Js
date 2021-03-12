@@ -1,3 +1,4 @@
+
 //arrray of the quiz questions, avaialble choices, and correct answers
 var questions = [
   {
@@ -12,14 +13,14 @@ var questions = [
   },
   {
     title: "What is a JavaScript string?",
-    choices: [ "Used for storing and manipulating text.",
-    "A string is written inside quotes.",
-    "Both",
-    "None of this",
-  ],
-  answer:
-    "Both",
-},
+    choices: ["Used for storing and manipulating text.",
+      "A string is written inside quotes.",
+      "Both",
+      "None of this",
+    ],
+    answer:
+      "Both",
+  },
   {
     title:
       " Which of the below statements about JavaScript functions is true?",
@@ -58,7 +59,7 @@ function start() {
   timeLeft = 100;
   document.getElementById("timeLeft").innerHTML = timeLeft;
 
-  timer = setInterval(function(seconds) {
+  timer = setInterval(function (seconds) {
     timeLeft--;
     document.getElementById("timeLeft").innerHTML = timeLeft;
     //proceed to end the game function when timer is below 0 at any time
@@ -76,8 +77,7 @@ function endGame() {
   clearInterval(timer);
 
   var content =
-    `
-    <h1>GAME OVER!</h1>
+    `<h1>GAME OVER!</h1>
     <h2>You got a total of ` +
     score +
     ` points!</h2>
@@ -87,8 +87,8 @@ function endGame() {
     <input type="text" id="name" placeholder="First name"> 
     <button onclick="setScore()">Set score!</button>
     <button onclick="resetGame()">Play Again!</button>`;
-    
-    
+
+
 
 
   document.getElementById("Body").innerHTML = content;
@@ -104,8 +104,8 @@ function setScore() {
 }
 
 function displayScore() {
-  
-   var content =
+
+  var content =
     `
     <h2>` +
     localStorage.getItem("highscoreName") +
@@ -124,6 +124,11 @@ function displayScore() {
 
 }
 
+
+document.getElementById("quiz").onload = function () { onLoad() };
+function onLoad() {
+  document.getElementById("quiz").innerHTML = content;
+}
 //clears the score name and value in the local storage if the user selects 'clear score'
 function clearScore() {
   localStorage.setItem("highscore", "");
@@ -131,7 +136,9 @@ function clearScore() {
 
   resetGame();
 }
-
+function gohome() {
+  window.location = "index.html"
+}
 //reset the game
 function resetGame() {
   clearInterval(timer);
@@ -141,25 +148,15 @@ function resetGame() {
   timer = null;
 
   document.getElementById("timeLeft").innerHTML = timeLeft;
-  
-  var content = `
-    <h1>
-        JavaScript Quiz!
-    </h1>
-    <h3>
-        Click to play!   
-    </h3>
-    <button onclick="start()">Start!</button>`;
-
-  document.getElementById("Body").innerHTML = content;
+  return gohome()
 }
-document.getElementById("wrong").innerHTML = "";
 
-function displayWrong(){
-    document.getElementById("wrong").innerHTML = 'Wrong!!';
-    setTimeout(() => {document.getElementById("wrong").innerHTML = ''
-      
-    }, 1000);
+function displayWrong() {
+  document.getElementById("wrong").innerHTML = 'Wrong ❌❌❌❌';
+  setTimeout(() => {
+    document.getElementById("wrong").innerHTML = ''
+
+  }, 1000);
 }
 
 function playSoundW() {
@@ -168,7 +165,7 @@ function playSoundW() {
 }
 //deduct 25seconds from the timer if user chooses an incorrect answer
 
- function incorrect() {
+function incorrect() {
   timeLeft -= 25;
   next();
   displayWrong();
@@ -179,13 +176,14 @@ function playSoundC() {
   var sound = document.getElementById("audioC");
   sound.play();
 }
-function displayCorrect(){
-  document.getElementById("correct").innerHTML = 'Correct!!';
-  setTimeout(() => {document.getElementById("correct").innerHTML = ''
-    
+function displayCorrect() {
+  document.getElementById("correct").innerHTML = 'Correct 🏆🏆🏆🏆';
+  setTimeout(() => {
+    document.getElementById("correct").innerHTML = ''
+
   }, 1000);
 }
-//increases the score by 20points if the user chooses the correct answer
+//increases the score by 25points if the user chooses the correct answer
 function correct() {
   score += 25;
   next();
@@ -202,7 +200,7 @@ function next() {
     return;
   }
 
-  var content = '<h1>' + questions[showQuestion].title + '</h1>';
+  var content = '<h1 class="anim container">' + questions[showQuestion].title + '</h1>';
 
   for (
     var buttonLoop = 0;
