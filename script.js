@@ -1,4 +1,3 @@
-
 //arrray of the quiz questions, avaialble choices, and correct answers
 var questions = [
   {
@@ -13,14 +12,14 @@ var questions = [
   },
   {
     title: "What is a JavaScript string?",
-    choices: ["Used for storing and manipulating text.",
-      "A string is written inside quotes.",
-      "Both",
-      "None of this",
-    ],
-    answer:
-      "Both",
-  },
+    choices: [ "Used for storing and manipulating text.",
+    "A string is written inside quotes.",
+    "Both",
+    "None of this",
+  ],
+  answer:
+    "Both",
+},
   {
     title:
       " Which of the below statements about JavaScript functions is true?",
@@ -59,7 +58,7 @@ function start() {
   timeLeft = 100;
   document.getElementById("timeLeft").innerHTML = timeLeft;
 
-  timer = setInterval(function (seconds) {
+  timer = setInterval(function(seconds) {
     timeLeft--;
     document.getElementById("timeLeft").innerHTML = timeLeft;
     //proceed to end the game function when timer is below 0 at any time
@@ -83,12 +82,12 @@ function endGame() {
     ` points!</h2>
     <h3>You answered to ` +
     score / 25 +
-    ` questions correct!</h3>
+    ` correct questions!</h3>
     <input type="text" id="name" placeholder="First name"> 
     <button onclick="setScore()">Set score!</button>
     <button onclick="resetGame()">Play Again!</button>`;
-
-
+    
+    
 
 
   document.getElementById("Body").innerHTML = content;
@@ -96,16 +95,16 @@ function endGame() {
 
 
 
-//store the scores on local storage
+//store the scores in local storage
 function setScore() {
   localStorage.setItem("highscore", score);
   localStorage.setItem("highscoreName", document.getElementById("name").value);
   displayScore();
 }
-
+// display the generated screen with the last game score
 function displayScore() {
-
-  var content =
+  
+   var content =
     `
     <h2>` +
     localStorage.getItem("highscoreName") +
@@ -124,22 +123,15 @@ function displayScore() {
 
 }
 
-
-document.getElementById("quiz").onload = function () { onLoad() };
-function onLoad() {
-  document.getElementById("quiz").innerHTML = content;
-}
-//clears the score name and value in the local storage if the user selects 'clear score'
+//clears local storage when clear score button is clicked
 function clearScore() {
   localStorage.setItem("highscore", "");
   localStorage.setItem("highscoreName", "");
 
   resetGame();
 }
-function gohome() {
-  window.location = "index.html"
-}
-//reset the game
+
+//reset the game and display the generated home screen
 function resetGame() {
   clearInterval(timer);
   score = 0;
@@ -148,42 +140,56 @@ function resetGame() {
   timer = null;
 
   document.getElementById("timeLeft").innerHTML = timeLeft;
-  return gohome()
+  
+  var content = `
+    <h1>
+        JavaScript Quiz!
+    </h1>
+    <h3>
+        Click to play!   
+    </h3>
+    <button onclick="start()">Start!</button>`;
+
+  document.getElementById("Body").innerHTML = content;
 }
 
-function displayWrong() {
-  document.getElementById("wrong").innerHTML = 'Wrong ❌❌❌❌';
-  setTimeout(() => {
-    document.getElementById("wrong").innerHTML = ''
-
-  }, 1000);
+//display an alert for 1 sec when the answwwr is wrong
+function displayWrong(){
+    document.getElementById("wrong").innerHTML = 'Wrong!! ❌❌❌❌';
+    setTimeout(() => {document.getElementById("wrong").innerHTML = ''
+      
+    }, 1000);
 }
+
+// play a sound when the answer is wrong
 
 function playSoundW() {
   var soundW = document.getElementById("audioW");
   soundW.play();
 }
+
 //deduct 25seconds from the timer if user chooses an incorrect answer
 
-function incorrect() {
+ function incorrect() {
   timeLeft -= 25;
   next();
   displayWrong();
   playSoundW();
 }
+// play a sound when the answer is correct
 
 function playSoundC() {
   var sound = document.getElementById("audioC");
   sound.play();
 }
-function displayCorrect() {
-  document.getElementById("correct").innerHTML = 'Correct 🏆🏆🏆🏆';
-  setTimeout(() => {
-    document.getElementById("correct").innerHTML = ''
-
+//display a correct alert when the right answer is clicked
+function displayCorrect(){
+  document.getElementById("correct").innerHTML = 'Correct!!🏆🏆🏆🏆🏆';
+  setTimeout(() => {document.getElementById("correct").innerHTML = ''
+    
   }, 1000);
 }
-//increases the score by 25points if the user chooses the correct answer
+//assign 25points if the user chooses the correct answer
 function correct() {
   score += 25;
   next();
@@ -191,7 +197,7 @@ function correct() {
   playSoundC();
 }
 
-//loops through the questions
+//questions loop and end the game when last question is answered
 function next() {
   showQuestion++;
 
@@ -199,28 +205,26 @@ function next() {
     endGame();
     return;
   }
-
+  // check if the answer is correct
   var content = '<h1 class="anim container">' + questions[showQuestion].title + '</h1>';
 
   for (
-    var buttonLoop = 0;
-    buttonLoop < questions[showQuestion].choices.length;
-    buttonLoop++
-  ) {
-    var buttonCode = '<button onclick="[answer]">[question]</button>';
-    buttonCode = buttonCode.replace(
+    var i = 0;
+    i < questions[showQuestion].choices.length; i++) {
+    var answered = '<button onclick="[answer]">[question]</button>';
+    answered = answered.replace(
       "[question]",
-      questions[showQuestion].choices[buttonLoop]
+      questions[showQuestion].choices[i]
     );
     if (
-      questions[showQuestion].choices[buttonLoop] ==
+      questions[showQuestion].choices[i] ==
       questions[showQuestion].answer
     ) {
-      buttonCode = buttonCode.replace("[answer]", "correct()");
+      answered = answered.replace("[answer]", "correct()");
     } else {
-      buttonCode = buttonCode.replace("[answer]", "incorrect()");
+      answered = answered.replace("[answer]", "incorrect()");
     }
-    content += buttonCode;
+    content += answered;
   }
 
   document.getElementById("Body").innerHTML = content;
