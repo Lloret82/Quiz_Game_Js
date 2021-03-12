@@ -5,7 +5,7 @@
 <head>
 	<title>Code Quiz</title>
 	<meta charset="UTF-8">
-	<link href="style.css" rel="stylesheet" type="text/css">
+	<link href="./assets/css/style.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -13,7 +13,7 @@
 	<div id="nav">
 		<!-- view scores link on the top left of nav bar-->
 		<div class="score">
-			<a onclick="getScore()" href="#">
+			<a onclick="displayScore()" href="#">
 				<h4>View Highscore</h4>
 			</a>
 		</div>
@@ -41,12 +41,13 @@
 	<div id="correct"></div>
 	<div id="wrong"></div>
 	</div>
-	<audio id="audioW" src="fail.mp3"></audio>
+	<!-- audio for wrong and correct questions -->
+	<audio id="audioW" src="./assets/sound/fail.mp3"></audio>
     <a onclick="playSoundW();"></a>
-	<audio id="audioC" src="correct.mp3"></audio>
+	<audio id="audioC" src="./assets/sound/correct.mp3"></audio>
     <a onclick="playSoundC();"></a>
     
 </body>
-<script src="script.js" type="text/javascript"></script>
+<script src="./assets/js/script.js" type="text/javascript"></script>
 
 </html>

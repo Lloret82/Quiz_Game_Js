@@ -75,7 +75,7 @@ button:hover {
     color: red;
     font-weight: 700;
 }
-
+/*  animation for questions displayed */
 @keyframes movingTopToBottom {
     0% {
       top: -150px;
